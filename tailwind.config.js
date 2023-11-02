@@ -9,6 +9,10 @@ export default {
         primaryColor: '#00607A',
         grayColor: '#D9D9D9',
       },
+      fontFamily: {
+        slackSide: ['Slackside One', 'cursive'],
+        popins: ['Poppins', 'sans-serif'],
+      },
     },
   },
   plugins: [],
