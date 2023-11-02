@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react'
 // import { RiUserFill } from 'react-icons/ri'
-import { FaUserTie } from "react-icons/fa";
-import { promptSomDevs } from "../lib/data";
+import { FaUserTie } from 'react-icons/fa'
+import { promptSomDevs } from '../lib/data'
 
 const Sidebar: React.FC = () => {
   return (
@@ -31,7 +31,7 @@ const Sidebar: React.FC = () => {
         </p>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Sidebar;
+export default Sidebar
