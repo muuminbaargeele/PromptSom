@@ -1,17 +1,14 @@
 import axios from 'axios';
 
 async function postData() {
-  axios.get('/')
-    .then(function (response) {
-      // handle success
-      console.log(response);
-    })
-    .catch(function (error) {
-      // handle error
-      console.log(error);
-    })
-    .finally(function () {
-      // always executed
+  try {
+    const response = await axios.post('http://127.0.0.1:2026/respond', {
+      "topic": "haye",
     });
+    console.log(response.data.message);
+    return response.data.message;
+  } catch (error) {
+    console.log(error)
+  }
 }
 export default postData
