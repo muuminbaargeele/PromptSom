@@ -1,6 +1,7 @@
 import React from 'react'
 import { BsFillLightningChargeFill } from 'react-icons/bs'
 import Header from './Header'
+import Response from './Response'
 
 const Chat: React.FC = () => {
   return (
@@ -8,8 +9,9 @@ const Chat: React.FC = () => {
       <div className="flex flex-col justify-between flex-1  py-7 lg:pt-8 lg:py-[0.60rem] ">
         <Header />
 
-        <div className="flex justify-center">
+        <div className="flex justify-center relative">
           <BsFillLightningChargeFill className="w-[21rem] h-[21rem] opacity-50 object-contain text-darkGreen" />
+          <Response />
         </div>
 
         <form className="flex flex-col gap-2">
