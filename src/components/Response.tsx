@@ -4,7 +4,10 @@ import { BiSolidUserVoice } from 'react-icons/bi'
 
 const Response: React.FC = () => {
   return (
-    <section className="flex flex-col gap-3 h-[435px] w-full overflow-y-scroll active-scroll absolute bg-transparent">
+    <section
+      className="flex flex-col gap-3 h-[435px] w-full overflow-y-scroll active-scroll
+       absolute bg-transparent"
+    >
       <div className="flex flex-col w-full gap-3">
         <div className="flex w-full gap-3">
           <span className="border self-start border-grayColor/50 rounded-2xl p-[14px]">
