@@ -6,7 +6,7 @@ import Response from './Response'
 const Chat: React.FC = () => {
   return (
     <section className="flex flex-col  h-full w-full px-5 lg:px-[3.625rem]">
-      <div className="flex flex-col justify-between flex-1  py-7 lg:pt-8 lg:py-[0.60rem] ">
+      <div className="flex flex-col justify-between flex-1 py-7 lg:pt-8 lg:py-[0.60rem] ">
         <Header />
 
         <div className="flex justify-center relative">
