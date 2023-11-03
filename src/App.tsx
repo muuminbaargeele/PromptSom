@@ -1,18 +1,15 @@
-import React, { useEffect } from "react";
-import postData from "./api/chat";
-import Sidebar from "./components/sidebar";
-import Chat from "./components/Chat";
+import React from 'react'
+import Sidebar from './components/sidebar'
+import Chat from './components/Chat'
+import { postData } from './api/chat'
 
 const App: React.FC = () => {
-  useEffect(() => {
-    postData();
-  }, []);
   return (
     <div className="flex bg-darkLightGreen h-screen w-full">
       <Sidebar />
-      <Chat />
+      <Chat postData={postData} />
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App
