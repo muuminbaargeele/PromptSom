@@ -8,7 +8,7 @@ export async function postData(question: string | number) {
         topic: question,
       }
     )
-    console.log(response)
+    // console.log(response)
 
     return response.data.message
   } catch (error) {
