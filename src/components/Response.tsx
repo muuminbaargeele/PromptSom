@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react'
 import { FaUser, FaRobot } from 'react-icons/fa'
 import { BiSolidUserVoice } from 'react-icons/bi'
 import { previousQuestionsType, previousAnswersType } from './Chat'
@@ -9,13 +10,26 @@ type ResponseProps = {
 }
 
 const Response = ({ previousQuestions, previousAnswers }: ResponseProps) => {
+  const sectionRef = useRef<HTMLDivElement | null>(null)
+
+  useEffect(() => {
+    if (sectionRef.current == null) return
+
+    sectionRef.current.scrollTop = sectionRef.current.scrollHeight
+    sectionRef.current.scrollIntoView({ behavior: 'smooth' })
+  }, [previousAnswers])
+
   return (
     <section
-      className="flex flex-col gap-3 h-[435px] w-full overflow-y-scroll active-scroll
-       absolute bg-transparent"
+      className="flex flex-col gap-3 h-[435px] w-full overflow-y-auto active-scroll
+       absolute bg-transparent "
     >
       {previousQuestions.map((question, index) => (
-        <div key={question.id} className="flex flex-col w-full gap-3">
+        <div
+          key={question.id}
+          className="flex flex-col w-full gap-3 pb-4 "
+          ref={sectionRef}
+        >
           <div className="flex w-full gap-3">
             <span className="border self-start border-grayColor/50 rounded-2xl p-[14px]">
               <FaUser className="text-white h-6 w-6 lg:h-12 lg:w-12" />
@@ -25,12 +39,12 @@ const Response = ({ previousQuestions, previousAnswers }: ResponseProps) => {
             </span>
           </div>
 
-          <div className="flex items-start gap-3 ">
+          <div className="flex items-start gap-3">
             <span className="border border-grayColor/50 rounded-2xl p-[14px]">
               <FaRobot className="text-white h-6 w-6 lg:h-12 lg:w-12" />
             </span>
-            <div className="flex flex-col justify-between w-full border border-grayColor/50 rounded-2xl px-4 py-3 lg:py-7  overflow-y-scroll active-scroll">
-              <p className="text-white text-[10px] lg:text-sm font-popins font-normal ">
+            <div className="flex flex-col justify-between w-full border border-grayColor/50 rounded-2xl px-4 py-3 lg:py-7">
+              <p className="text-white text-[10px] lg:text-sm font-popins font-normal">
                 {previousAnswers[index].answer}
               </p>
               <span className="self-end  cursor-pointer">
