@@ -1,31 +1,48 @@
-import { useEffect, useRef } from "react";
-import { FaUser, FaRobot } from "react-icons/fa";
-import { BiSolidUserVoice } from "react-icons/bi";
-import { previousQuestionsType, previousAnswersType } from "./Chat";
-import TypewriterParagraph from "./TypewriterParagraph";
+import { useEffect, useRef } from 'react'
+import { FaUser, FaRobot } from 'react-icons/fa'
+import { BiSolidUserVoice } from 'react-icons/bi'
+import { previousQuestionsType, previousAnswersType } from './Chat'
+import TypewriterParagraph from './TypewriterParagraph'
 
 type ResponseProps = {
-  previousQuestions: previousQuestionsType[];
-  previousAnswers: previousAnswersType[];
-  question: string | number;
-};
+  previousQuestions: previousQuestionsType[]
+  previousAnswers: previousAnswersType[]
+  question: string | number
+  isScrolled: boolean
+  setIsScrolled: (isScrolled: boolean) => void
+}
 
-const Response = ({ previousQuestions, previousAnswers }: ResponseProps) => {
-  const sectionRef = useRef<HTMLDivElement | null>(null);
+const Response = ({
+  previousQuestions,
+  previousAnswers,
+  isScrolled,
+  setIsScrolled,
+}: ResponseProps) => {
+  const sectionRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
     const scrollInterval = setInterval(() => {
+      console.log('wu shaqenoya')
       // Scroll to the bottom of the section with smooth behavior
-      if (sectionRef.current) {
-        sectionRef.current.scrollTop = sectionRef.current.scrollHeight;
-        sectionRef.current.scrollIntoView({ behavior: "smooth" });
+      if (sectionRef.current && !isScrolled) {
+        sectionRef.current.scrollTop = sectionRef.current.scrollHeight
+        sectionRef.current.scrollIntoView({ behavior: 'smooth' })
       }
-    }, 2); // 2 milliseconds interval
+    }, 2) // 2 milliseconds interval
+
+    sectionRef.current?.addEventListener('scroll', handleScroll)
+    function handleScroll() {
+      // alert('ok')
+      setIsScrolled(false)
+    }
 
     return () => {
-      clearInterval(scrollInterval); // Clean up the interval when the component unmounts
-    };
-  }, []);
+      {
+        isScrolled && clearInterval(scrollInterval)
+      }
+      // Clean up the interval when the component unmounts
+    }
+  }, [])
 
   return (
     <section
@@ -51,7 +68,7 @@ const Response = ({ previousQuestions, previousAnswers }: ResponseProps) => {
             <div className="flex flex-col justify-between w-full border border-grayColor/50 rounded-2xl px-4 py-3 lg:py-7">
               <TypewriterParagraph
                 textToType={
-                  previousAnswers[index].answer ?? "Something Wrong from API"
+                  previousAnswers[index].answer ?? 'Something Wrong from API'
                 }
               />
               <span className="self-end  cursor-pointer">
@@ -62,7 +79,7 @@ const Response = ({ previousQuestions, previousAnswers }: ResponseProps) => {
         </div>
       ))}
     </section>
-  );
-};
+  )
+}
 
-export default Response;
+export default Response
