@@ -1,23 +1,32 @@
-import { useEffect, useRef } from 'react'
-import { FaUser, FaRobot } from 'react-icons/fa'
-import { BiSolidUserVoice } from 'react-icons/bi'
-import { previousQuestionsType, previousAnswersType } from './Chat'
+import { useEffect, useRef } from "react";
+import { FaUser, FaRobot } from "react-icons/fa";
+import { BiSolidUserVoice } from "react-icons/bi";
+import { previousQuestionsType, previousAnswersType } from "./Chat";
 
 type ResponseProps = {
-  previousQuestions: previousQuestionsType[]
-  previousAnswers: previousAnswersType[]
-  question: string | number
-}
+  previousQuestions: previousQuestionsType[];
+  previousAnswers: previousAnswersType[];
+  question: string | number;
+};
 
 const Response = ({ previousQuestions, previousAnswers }: ResponseProps) => {
-  const sectionRef = useRef<HTMLDivElement | null>(null)
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+
+  const intervalId = setInterval(() => {
+    // Your function to be called every 2 milliseconds
+    previousAnswers;
+  }, 2);
 
   useEffect(() => {
-    if (sectionRef.current == null) return
+    if (sectionRef.current == null) return;
 
-    sectionRef.current.scrollTop = sectionRef.current.scrollHeight
-    sectionRef.current.scrollIntoView({ behavior: 'smooth' })
-  }, [previousAnswers])
+    sectionRef.current.scrollTop = sectionRef.current.scrollHeight;
+    sectionRef.current.scrollIntoView({ behavior: "smooth" });
+
+    return () => {
+      clearInterval(intervalId); // Clean up the interval when the component unmounts
+    };
+  }, [intervalId]);
 
   return (
     <section
@@ -55,7 +64,7 @@ const Response = ({ previousQuestions, previousAnswers }: ResponseProps) => {
         </div>
       ))}
     </section>
-  )
-}
+  );
+};
 
-export default Response
+export default Response;
