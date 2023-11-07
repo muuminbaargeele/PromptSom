@@ -131,8 +131,8 @@ const Chat = ({ postData }: ChatTypeProps) => {
         </form>
       </div>
 
-      <p className="hidden lg:block pb-4 text-grayColor font-popins text-[0.75rem] font-medium">
-        Fadlan gali qoraal
+      <p className="pb-4 text-grayColor font-popins text-[0.75rem] lg:font-medium">
+        Fadlan gali qoraal dhigaalkiisu saxan yahay; si aad warcelin sugan u heshid.
       </p>
     </section>
   )

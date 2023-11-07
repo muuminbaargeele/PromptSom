@@ -4,7 +4,7 @@ const Header: React.FC = () => {
   return (
     <header className="flex items-center justify-center w-full">
       <h1 className="text-grayColor text-center text-xl font-popins font-bold">
-        Somali Artificial intelligence
+        Baargeelle Bot
       </h1>
     </header>
   )
