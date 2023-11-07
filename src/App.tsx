@@ -6,7 +6,7 @@ import { ScrollContextProvider } from './context/ScrollContext'
 
 const App: React.FC = () => {
   return (
-    <div className="flex bg-darkLightGreen h-screen w-full">
+    <div className="flex bg-darkLightGreen absolute top-0 bottom-0 lg:h-screen w-full">
       <ScrollContextProvider>
         <Sidebar />
         <Chat postData={postData} />

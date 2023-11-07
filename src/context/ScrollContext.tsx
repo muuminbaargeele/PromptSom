@@ -14,7 +14,7 @@ const ScrollContext = createContext<ScrollContextMethonds | null>(null)
 export const ScrollContextProvider = ({
   children,
 }: ScrollContextProviderProps) => {
-  const [scrollable, setScrollable] = useState<boolean>(false)
+  const [scrollable, setScrollable] = useState<boolean>(true)
 
   const values = {
     scrollable,

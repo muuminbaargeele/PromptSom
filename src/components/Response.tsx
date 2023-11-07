@@ -47,7 +47,7 @@ const Response = ({ previousQuestions, previousAnswers }: ResponseProps) => {
 
   return (
     <section
-      className="flex flex-col gap-3 h-[435px] w-full overflow-y-scroll active-scroll
+      className="flex flex-col gap-3 h-full w-full overflow-y-scroll active-scroll
        absolute bg-transparent "
       ref={sectionRef}
     >
