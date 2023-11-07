@@ -101,7 +101,7 @@ const Chat = ({ postData }: ChatTypeProps) => {
             <input
               className="w-full outline-none border border-grayColor py-3 lg:py-4 text-white opacity-50 font-popins text-[1rem] lg:text-xl bg-transparent rounded-xl lg:rounded-2xl pl-3 lg:pl-5 focus:border-blue-600 transition-all duration-150 ease-in-out"
               type="text"
-              placeholder="Send a Message"
+              placeholder="Dir farriin"
               name="question"
               value={question}
               onChange={handleOnChange}
@@ -124,7 +124,7 @@ const Chat = ({ postData }: ChatTypeProps) => {
                   size={23}
                 />
               ) : (
-                'Send'
+                'Dirso'
               )}
             </button>
           </div>
@@ -132,7 +132,7 @@ const Chat = ({ postData }: ChatTypeProps) => {
       </div>
 
       <p className="hidden lg:block pb-4 text-grayColor font-popins text-[0.75rem] font-medium">
-        Designed by Baargelle
+        Fadlan gali qoraal
       </p>
     </section>
   )
