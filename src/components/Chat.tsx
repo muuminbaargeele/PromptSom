@@ -3,6 +3,7 @@ import { BsFillLightningChargeFill } from 'react-icons/bs'
 import Header from './Header'
 import Response from './Response'
 import ClipLoader from 'react-spinners/ClipLoader'
+import useScroll from '../context/ScrollContext'
 
 const override: CSSProperties = {
   display: 'block',
@@ -24,13 +25,14 @@ export type previousAnswersType = {
 }
 
 const Chat = ({ postData }: ChatTypeProps) => {
+  const { scrollable, setScrollable } = useScroll()
+
   const [question, setQuestion] = useState<string | number>('')
   const [previousQuestions, setPreviousQuestion] = useState<
     previousQuestionsType[]
   >([])
   let [previousAnswers, setPreviousAnwers] = useState<previousAnswersType[]>([])
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [scrollable, setScrollable] = useState<boolean>(false)
 
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuestion(event.target.value)
@@ -39,6 +41,7 @@ const Chat = ({ postData }: ChatTypeProps) => {
   const handleSubmit = async (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault()
 
+    setScrollable(false)
     setIsLoading(true)
 
     // Clear then save answers in state
@@ -80,8 +83,6 @@ const Chat = ({ postData }: ChatTypeProps) => {
             previousQuestions={previousQuestions}
             question={question}
             previousAnswers={previousAnswers}
-            scrollable={scrollable}
-            setScrollable={setScrollable}
           />
         </div>
 

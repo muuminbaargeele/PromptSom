@@ -1,24 +1,22 @@
-import { useEffect, useRef, useState } from "react";
-import { FaUser, FaRobot } from "react-icons/fa";
-import { BiSolidUserVoice } from "react-icons/bi";
-import { previousQuestionsType, previousAnswersType } from "./Chat";
-import TypewriterParagraph from "./TypewriterParagraph";
+import { useEffect, useRef, useState } from 'react'
+import { FaUser, FaRobot } from 'react-icons/fa'
+import { BiSolidUserVoice } from 'react-icons/bi'
+import { previousQuestionsType, previousAnswersType } from './Chat'
+import TypewriterParagraph from './TypewriterParagraph'
+import useScroll from '../context/ScrollContext'
 
 type ResponseProps = {
-  previousQuestions: previousQuestionsType[];
-  previousAnswers: previousAnswersType[];
-  question: string | number;
-  scrollable: boolean;
-  setScrollable: (isScrolled: boolean) => void;
-};
+  previousQuestions: previousQuestionsType[]
+  previousAnswers: previousAnswersType[]
+  question: string | number
+  scrollable: boolean
+  setScrollable: (isScrolled: boolean) => void
+}
 
-const Response = ({
-  previousQuestions,
-  previousAnswers,
-  scrollable,
-  setScrollable,
-}: ResponseProps) => {
-  const sectionRef = useRef<HTMLDivElement | null>(null);
+const Response = ({ previousQuestions, previousAnswers }: ResponseProps) => {
+  const { scrollable, setScrollable } = useScroll()
+
+  const sectionRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
     //hoos ikeey
@@ -26,26 +24,26 @@ const Response = ({
       // Scroll to the bottom of the section with smooth behavior
       //hadi la scroll-gareykarin
       if (sectionRef.current && !scrollable) {
-        console.log("Lama Scroll-gareykaro");
-        sectionRef.current.scrollTop = sectionRef.current.scrollHeight;
-        sectionRef.current.scrollIntoView({ behavior: "smooth" });
+        console.log('Lama Scroll-gareykaro')
+        sectionRef.current.scrollTop = sectionRef.current.scrollHeight
+        sectionRef.current.scrollIntoView({ behavior: 'smooth' })
       }
-    }, 2);
+    }, 2)
 
     //Userka Ha maamulo hadi la scroll-gareykaro
-    if (scrollable) {
-      sectionRef.current?.addEventListener("scroll", handleScroll);
+    if (!scrollable) {
+      sectionRef.current?.addEventListener('drag', handleScroll)
       function handleScroll() {
-        console.log("Waala Scroll-gareykara");
-        // setScrollable(true);
+        console.log('Waala Scroll-gareykara')
+        setScrollable(true)
       }
     }
 
     return () => {
-      clearInterval(scrollInterval);
+      clearInterval(scrollInterval)
       // Clean up the interval when the component unmounts
-    };
-  }, []);
+    }
+  }, [scrollable, setScrollable])
 
   return (
     <section
@@ -72,7 +70,9 @@ const Response = ({
               {previousAnswers[index].answer && (
                 <TypewriterParagraph
                   textToType={
-                    previousAnswers[index].answer ?? "Something Wrong from API"
+                    previousAnswers[index].answer
+                      ? previousAnswers[index].answer
+                      : 'Something went wrong try again'
                   }
                 />
               )}
@@ -84,7 +84,7 @@ const Response = ({
         </div>
       ))}
     </section>
-  );
-};
+  )
+}
 
-export default Response;
+export default Response
