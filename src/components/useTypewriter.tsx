@@ -1,16 +1,19 @@
 import { useState, useEffect } from 'react'
 import useScroll from '../context/ScrollContext'
 
-function useTypewriter(initialText, typingInterval = 50) {
+function useTypewriter(
+  initialText: string | number | undefined,
+  typingInterval: number = 50
+) {
   const { setScrollable } = useScroll()
 
-  const [text, setText] = useState('')
-  const [charIndex, setCharIndex] = useState(0)
+  const [text, setText] = useState<string | number>('')
+  const [charIndex, setCharIndex] = useState<number>(0)
 
   useEffect(() => {
-    if (charIndex < initialText.length) {
+    if (charIndex < String(initialText).length) {
       const timeoutId = setTimeout(() => {
-        setText((prevText) => prevText + initialText[charIndex])
+        setText((prevText) => prevText + String(initialText)[charIndex])
         setCharIndex(charIndex + 1)
       }, typingInterval)
 

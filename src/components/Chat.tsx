@@ -25,7 +25,7 @@ export type previousAnswersType = {
 }
 
 const Chat = ({ postData }: ChatTypeProps) => {
-  const { scrollable, setScrollable } = useScroll()
+  const { setScrollable } = useScroll()
 
   const [question, setQuestion] = useState<string | number>('')
   const [previousQuestions, setPreviousQuestion] = useState<
@@ -72,6 +72,13 @@ const Chat = ({ postData }: ChatTypeProps) => {
     setScrollable(false)
   }
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.keyCode === 13) {
+      if (!isLoading) return
+      event.preventDefault()
+    }
+  }
+
   return (
     <section className="flex flex-col  h- w-full px-5 lg:px-[3.625rem]">
       <div className="flex flex-col justify-between  flex-1 py-7 lg:pt-8 lg:py-[0.60rem] ">
@@ -98,11 +105,12 @@ const Chat = ({ postData }: ChatTypeProps) => {
               name="question"
               value={question}
               onChange={handleOnChange}
+              onKeyDown={handleKeyDown}
               required
             />
             <button
               type="submit"
-              className={`bg-primaryColor text-grayColor font-popins text-sm lg:text-2xl rounded-xl lg:rounded-2xl py-3 lg:py-4 px-7 lg:px-10 hover:opacity-75 transition-opacity duration-150 ease-in-out ${
+              className={`bg-primaryColor text-grayColor font-popins text-[1rem] lg:text-2xl rounded-xl lg:rounded-2xl py-3 lg:py-4 px-7 lg:px-10 hover:opacity-75 transition-opacity duration-150 ease-in-out ${
                 isLoading && 'pointer-events-none'
               }`}
             >
@@ -113,6 +121,7 @@ const Chat = ({ postData }: ChatTypeProps) => {
                   cssOverride={override}
                   aria-label="Loading Spinner"
                   data-testid="loader"
+                  size={23}
                 />
               ) : (
                 'Send'

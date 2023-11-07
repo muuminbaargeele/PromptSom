@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { FaUser, FaRobot } from 'react-icons/fa'
 import { BiSolidUserVoice } from 'react-icons/bi'
 import { previousQuestionsType, previousAnswersType } from './Chat'
@@ -9,8 +9,6 @@ type ResponseProps = {
   previousQuestions: previousQuestionsType[]
   previousAnswers: previousAnswersType[]
   question: string | number
-  scrollable: boolean
-  setScrollable: (isScrolled: boolean) => void
 }
 
 const Response = ({ previousQuestions, previousAnswers }: ResponseProps) => {
@@ -47,7 +45,7 @@ const Response = ({ previousQuestions, previousAnswers }: ResponseProps) => {
 
   return (
     <section
-      className="flex flex-col gap-3 h-full w-full overflow-y-scroll active-scroll
+      className="flex flex-col gap-3 h-[435px] w-full overflow-y-scroll active-scroll
        absolute bg-transparent "
       ref={sectionRef}
     >
@@ -70,7 +68,7 @@ const Response = ({ previousQuestions, previousAnswers }: ResponseProps) => {
               {previousAnswers[index].answer && (
                 <TypewriterParagraph
                   textToType={
-                    previousAnswers[index].answer
+                    previousAnswers
                       ? previousAnswers[index].answer
                       : 'Something went wrong try again'
                   }
