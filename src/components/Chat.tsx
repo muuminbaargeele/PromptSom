@@ -30,7 +30,7 @@ const Chat = ({ postData }: ChatTypeProps) => {
   >([])
   let [previousAnswers, setPreviousAnwers] = useState<previousAnswersType[]>([])
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [isScrolled, setIsScrolled] = useState<boolean>(false)
+  const [scrollable, setScrollable] = useState<boolean>(false)
 
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuestion(event.target.value)
@@ -66,7 +66,7 @@ const Chat = ({ postData }: ChatTypeProps) => {
     // Update The Answer in state
     newAnswer.answer = res
 
-    setIsScrolled(true)
+    setScrollable(false)
   }
 
   return (
@@ -80,8 +80,8 @@ const Chat = ({ postData }: ChatTypeProps) => {
             previousQuestions={previousQuestions}
             question={question}
             previousAnswers={previousAnswers}
-            isScrolled={isScrolled}
-            setIsScrolled={setIsScrolled}
+            scrollable={scrollable}
+            setScrollable={setScrollable}
           />
         </div>
 

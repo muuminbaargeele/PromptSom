@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 function useTypewriter(initialText, typingInterval = 50) {
-  const [text, setText] = useState('');
+  const [text, setText] = useState("");
   const [charIndex, setCharIndex] = useState(0);
 
   useEffect(() => {
@@ -14,6 +14,10 @@ function useTypewriter(initialText, typingInterval = 50) {
       return () => {
         clearTimeout(timeoutId);
       };
+    } else {
+      // Mark typing as done when all characters have been typed
+      console.log("Wuu dhamaaday")
+      
     }
   }, [charIndex, initialText, typingInterval]);
 
