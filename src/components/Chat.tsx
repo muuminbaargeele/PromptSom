@@ -29,6 +29,7 @@ export type previousAnswersType = {
 const Chat = ({ postData }: ChatTypeProps) => {
   const { setScrollable } = useScroll();
   let { play, setPlay } = useSpeech();
+  console.log(play)
 
   const [question, setQuestion] = useState<string | number>("");
   const [previousQuestions, setPreviousQuestion] = useState<
