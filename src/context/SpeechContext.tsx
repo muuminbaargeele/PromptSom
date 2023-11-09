@@ -1,38 +1,38 @@
-import React, { createContext, useContext, useState } from 'react'
+import React, { createContext, useContext, useState } from "react";
 
 type SpeechContextProviderProps = {
-  children: React.ReactNode
-}
+  children: React.ReactNode;
+};
 
 type SpeechContextMethonds = {
-    setPlay: (play: boolean) => void
-  play: boolean
-}
+  setPlay: (play: boolean) => void;
+  play: boolean;
+};
 
-const SpeechContext = createContext<SpeechContextMethonds | null>(null)
+const SpeechContext = createContext<SpeechContextMethonds | null>(null);
 
 export const SpeechContextProvider = ({
   children,
 }: SpeechContextProviderProps) => {
-  const [play, setPlay] = useState<boolean>(true)
+  const [play, setPlay] = useState<boolean>(false);
 
   const values = {
     play,
     setPlay,
-  }
+  };
 
   return (
     <SpeechContext.Provider value={values}>{children}</SpeechContext.Provider>
-  )
-}
+  );
+};
 
 const useSpeech = () => {
-  const context = useContext(SpeechContext)
+  const context = useContext(SpeechContext);
   if (context === null) {
-    throw new Error('Context must use inside SpeechContextProvider')
+    throw new Error("Context must use inside SpeechContextProvider");
   }
 
-  return context
-}
+  return context;
+};
 
-export default useSpeech
+export default useSpeech;

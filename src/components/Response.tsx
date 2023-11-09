@@ -11,13 +11,20 @@ type ResponseProps = {
   previousQuestions: previousQuestionsType[];
   previousAnswers: previousAnswersType[];
   question: string | number;
+  select: number;
+  setSelect: (select: number) => void;
 };
 
-const Response = ({ previousQuestions, previousAnswers }: ResponseProps) => {
+const Response = ({
+  previousQuestions,
+  previousAnswers,
+  select,
+  setSelect,
+}: ResponseProps) => {
   const { scrollable, setScrollable } = useScroll();
 
   const sectionRef = useRef<HTMLDivElement | null>(null);
-  const { play, setPlay } = useSpeech();
+  let { play, setPlay } = useSpeech();
 
   useEffect(() => {
     //hoos ikeey
@@ -25,7 +32,7 @@ const Response = ({ previousQuestions, previousAnswers }: ResponseProps) => {
       // Scroll to the bottom of the section with smooth behavior
       //hadi la scroll-gareykarin
       if (sectionRef.current && !scrollable) {
-        console.log("Lama Scroll-gareykaro");
+        // console.log("Lama Scroll-gareykaro");
         sectionRef.current.scrollTop = sectionRef.current.scrollHeight;
         sectionRef.current.scrollIntoView({ behavior: "smooth" });
       }
@@ -35,7 +42,7 @@ const Response = ({ previousQuestions, previousAnswers }: ResponseProps) => {
     if (!scrollable) {
       sectionRef.current?.addEventListener("drag", handleScroll);
       function handleScroll() {
-        console.log("Waala Scroll-gareykara");
+        // console.log("Waala Scroll-gareykara");
         setScrollable(true);
       }
     }
@@ -78,19 +85,35 @@ const Response = ({ previousQuestions, previousAnswers }: ResponseProps) => {
                 />
               )}
               <span className="self-end  cursor-pointer">
-                {play ? (
+                {play && index == select ? (
                   <FaPause
                     className="text-white h-3 w-3 lg:h-6 lg:w-6 "
-                    onClick={() =>
-                      Speak(previousAnswers[index].answer, setPlay)
-                    }
+                    onClick={() => {
+                      setPlay(false);
+                      Speak(
+                        previousAnswers[index].answer,
+                        setPlay,
+                        (play = false)
+                      );
+                      setSelect(
+                        previousQuestions.indexOf(previousQuestions[index])
+                      );
+                    }}
                   />
                 ) : (
                   <FaPlay
                     className="text-white h-3 w-3 lg:h-6 lg:w-6 "
-                    onClick={() =>
-                      Speak(previousAnswers[index].answer, setPlay)
-                    }
+                    onClick={() => {
+                      setPlay(true);
+                      Speak(
+                        previousAnswers[index].answer,
+                        setPlay,
+                        (play = true)
+                      );
+                      setSelect(
+                        previousQuestions.indexOf(previousQuestions[index])
+                      );
+                    }}
                   />
                 )}
               </span>

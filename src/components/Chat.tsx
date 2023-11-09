@@ -28,7 +28,7 @@ export type previousAnswersType = {
 
 const Chat = ({ postData }: ChatTypeProps) => {
   const { setScrollable } = useScroll();
-  const { setPlay } = useSpeech();
+  let { play, setPlay } = useSpeech();
 
   const [question, setQuestion] = useState<string | number>("");
   const [previousQuestions, setPreviousQuestion] = useState<
@@ -38,6 +38,7 @@ const Chat = ({ postData }: ChatTypeProps) => {
     []
   );
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [select, setSelect] = useState<number>(0);
 
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuestion(event.target.value);
@@ -46,6 +47,7 @@ const Chat = ({ postData }: ChatTypeProps) => {
   const handleSubmit = async (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    setSelect(previousQuestions.length);
     setScrollable(false);
     setIsLoading(true);
 
@@ -74,9 +76,7 @@ const Chat = ({ postData }: ChatTypeProps) => {
     // Update The Answer in state
     newAnswer.answer = res;
 
-    setPlay(true);
-
-    Speak(res, setPlay);
+    Speak(res, setPlay, (play = true));
 
     setScrollable(false);
   };
@@ -99,6 +99,8 @@ const Chat = ({ postData }: ChatTypeProps) => {
             previousQuestions={previousQuestions}
             question={question}
             previousAnswers={previousAnswers}
+            select={select}
+            setSelect={setSelect}
           />
         </div>
 

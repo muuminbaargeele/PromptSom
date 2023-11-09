@@ -2,7 +2,8 @@ import * as sdk from "microsoft-cognitiveservices-speech-sdk";
 
 export async function Speak(
   synthesisText: string | number | undefined,
-  setPlay: (arg0: boolean) => void
+  setPlay: (arg0: boolean) => void,
+  play: boolean
 ) {
   var synthesizer: any;
   var player;
@@ -40,6 +41,13 @@ export async function Speak(
       synthesizer.close();
     };
 
+    console.log(play);
+    if (play == false) {
+      player.pause();
+      console.log("pause close")
+      return;
+    }
+    console.log(play);
     synthesizer.speakTextAsync(synthesisText, complete_cb, err_cb);
 
     //   return response.data.message
