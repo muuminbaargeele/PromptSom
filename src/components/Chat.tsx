@@ -39,6 +39,7 @@ const Chat = ({ postData }: ChatTypeProps) => {
   );
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [select, setSelect] = useState<number>(0);
+  const [player, setPlayer] = useState<any>();
 
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuestion(event.target.value);
@@ -73,10 +74,9 @@ const Chat = ({ postData }: ChatTypeProps) => {
 
     setIsLoading(false);
 
-    // Update The Answer in state
-    newAnswer.answer = res;
+    Speak(res, setPlay, (play = true), player, setPlayer);
 
-    Speak(res, setPlay, (play = true));
+    newAnswer.answer = res;
 
     setScrollable(false);
   };
@@ -101,6 +101,10 @@ const Chat = ({ postData }: ChatTypeProps) => {
             previousAnswers={previousAnswers}
             select={select}
             setSelect={setSelect}
+            player={player}
+            setPlayer={setPlayer}
+            isLoading={isLoading}
+            override={override}
           />
         </div>
 
@@ -121,7 +125,9 @@ const Chat = ({ postData }: ChatTypeProps) => {
             />
             <button
               type="submit"
-              className={`bg-primaryColor text-grayColor font-popins text-[1rem] lg:text-2xl rounded-xl lg:rounded-2xl py-3 lg:py-4 px-7 lg:px-10 hover:opacity-75 transition-opacity duration-150 ease-in-out ${
+              className={`bg-primaryColor text-grayColor font-popins text-[1rem] lg:text-2xl rounded-xl lg:rounded-2xl ${
+                isLoading ? "py-[10px]" : "py-[13px]"
+              }  lg:py-4 px-7 lg:px-10 hover:opacity-75 transition-opacity duration-150 ease-in-out ${
                 isLoading && "pointer-events-none"
               }`}
             >
@@ -132,7 +138,7 @@ const Chat = ({ postData }: ChatTypeProps) => {
                   cssOverride={override}
                   aria-label="Loading Spinner"
                   data-testid="loader"
-                  size={23}
+                  size={30}
                 />
               ) : (
                 "Dirso"

@@ -1,7 +1,7 @@
-import React from 'react'
+import React from "react";
 // import { RiUserFill } from 'react-icons/ri'
-import { FaUserTie } from 'react-icons/fa'
-import { promptSomDevs } from '../lib/data'
+import { FaUserTie } from "react-icons/fa";
+import { promptSomDevs } from "../lib/data";
 
 const Sidebar: React.FC = () => {
   return (
@@ -23,15 +23,15 @@ const Sidebar: React.FC = () => {
         </div>
 
         <p className="opacity-50 pt-5 text-[0.75rem] font-popins font-medium leading-7">
-          These five students worked together to create a chatbot that
-          understands Somali. Their goal was to make a special version of AI
-          that is easy for Somali speakers to use. They succeeded in making a
-          helpful tool that improves communication and breaks down language
-          barriers.
+          Shantaas arday baa si wadajir ah uga shaqaysay barnaamijkaan
+          ChatGPT-ga ah oo afka Soomaaliga wax lagu weyddiin karo. Hadafku wuxuu
+          ahaa in la helo qeyb maskaxda macmalka ah oo Soomaalida u fuduseysa
+          inay wax baaraan. Waa ay ku guuleysteen inay gaaraan qalbkaas. Hadda
+          dadka Soomaaliyeed luqad kama hor taagna inay ChatGPT la xirriiraan.
         </p>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;
