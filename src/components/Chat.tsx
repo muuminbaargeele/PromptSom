@@ -5,6 +5,7 @@ import Response from "./Response";
 import ClipLoader from "react-spinners/ClipLoader";
 import useScroll from "../context/ScrollContext";
 import { Speak } from "../api/speak";
+import useSpeech from "../context/SpeechContext";
 
 const override: CSSProperties = {
   display: "block",
@@ -27,6 +28,7 @@ export type previousAnswersType = {
 
 const Chat = ({ postData }: ChatTypeProps) => {
   const { setScrollable } = useScroll();
+  const { setPlay } = useSpeech();
 
   const [question, setQuestion] = useState<string | number>("");
   const [previousQuestions, setPreviousQuestion] = useState<
@@ -72,7 +74,9 @@ const Chat = ({ postData }: ChatTypeProps) => {
     // Update The Answer in state
     newAnswer.answer = res;
 
-    Speak(res);
+    setPlay(true);
+
+    Speak(res, setPlay);
 
     setScrollable(false);
   };

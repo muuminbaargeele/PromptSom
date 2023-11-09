@@ -81,12 +81,16 @@ const Response = ({ previousQuestions, previousAnswers }: ResponseProps) => {
                 {play ? (
                   <FaPause
                     className="text-white h-3 w-3 lg:h-6 lg:w-6 "
-                    onClick={() => Speak(previousAnswers[index].answer)}
+                    onClick={() =>
+                      Speak(previousAnswers[index].answer, setPlay)
+                    }
                   />
                 ) : (
                   <FaPlay
                     className="text-white h-3 w-3 lg:h-6 lg:w-6 "
-                    onClick={() => Speak(previousAnswers[index].answer)}
+                    onClick={() =>
+                      Speak(previousAnswers[index].answer, setPlay)
+                    }
                   />
                 )}
               </span>
