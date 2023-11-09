@@ -22,7 +22,6 @@ function useTypewriter(
       }
     } else {
       // Mark typing as done when all characters have been typed
-      console.log('Wuu dhamaaday')
       setScrollable(true)
     }
   }, [charIndex, initialText, typingInterval])
