@@ -124,6 +124,7 @@ ResponseProps) => {
                         setSelect(
                           previousQuestions.indexOf(previousQuestions[index])
                         );
+                        setScrollable(true);
                       }}
                     />
                   ) : (
