@@ -23,7 +23,7 @@ const Sidebar: React.FC = () => {
         </div>
 
         <p className="opacity-50 pt-5 text-[0.75rem] font-popins font-medium leading-7">
-          Shantaas arday baa si wadajir ah uga shaqaysay barnaamijkaan
+          Lixdaas arday baa si wadajir ah uga shaqaysay barnaamijkaan
           ChatGPT-ga ah oo afka Soomaaliga wax lagu weyddiin karo. Hadafku wuxuu
           ahaa in la helo qeyb maskaxda macmalka ah oo Soomaalida u fuduseysa
           inay wax baaraan. Waa ay ku guuleysteen inay gaaraan qalbkaas. Hadda

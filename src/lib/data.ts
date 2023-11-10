@@ -24,4 +24,8 @@ export const promptSomDevs: promptSomDevsType[] = [
     id: 6,
     name: 'Abdisamed Hussien Ahmed',
   },
+  {
+    id: 7,
+    name: 'Yahya Ahmed Abdi',
+  },
 ]
