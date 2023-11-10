@@ -116,7 +116,7 @@ const Chat = ({ postData }: ChatTypeProps) => {
           className="flex flex-col gap-2 relative z-50"
           onSubmit={handleSubmit}
         >
-          <div className="flex items-center gap-5">
+          <div className="flex items-center gap-3 lg:gap-5">
             <input
               className="w-full outline-none border border-grayColor py-3 lg:py-4 text-white opacity-50 font-popins text-[1rem] lg:text-xl bg-transparent rounded-xl lg:rounded-2xl pl-3 lg:pl-5 focus:border-blue-600 transition-all duration-150 ease-in-out"
               type="text"
