@@ -29,7 +29,7 @@ export type previousAnswersType = {
 const Chat = ({ postData }: ChatTypeProps) => {
   const { setScrollable } = useScroll();
   let { play, setPlay } = useSpeech();
-  console.log(play)
+  console.log(play);
 
   const [question, setQuestion] = useState<string | number>("");
   const [previousQuestions, setPreviousQuestion] = useState<
@@ -73,9 +73,7 @@ const Chat = ({ postData }: ChatTypeProps) => {
     // get the Response
     const res: string | number | undefined = await postData(question);
 
-    setIsLoading(false);
-
-    Speak(res, setPlay, (play = true), player, setPlayer);
+    Speak(res, setPlay, (play = true), player, setPlayer, setIsLoading);
 
     newAnswer.answer = res;
 
@@ -90,8 +88,8 @@ const Chat = ({ postData }: ChatTypeProps) => {
   };
 
   return (
-    <section className="flex flex-col  h- w-full px-5 lg:px-[3.625rem]">
-      <div className="flex flex-col justify-between  flex-1 pt-7 pb-2 lg:pt-8 lg:py-[0.60rem] ">
+    <section className="flex flex-col w-full px-5 lg:px-[3.625rem]">
+      <div className="flex flex-col justify-between  flex-1 pt-5 pb-2 lg:pt-8 lg:py-[0.60rem] ">
         <Header />
 
         <div className="flex h-[80%] justify-center items-center relative">

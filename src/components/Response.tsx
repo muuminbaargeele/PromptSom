@@ -117,7 +117,8 @@ ResponseProps) => {
                           setPlay,
                           (play = false),
                           player,
-                          setPlayer
+                          setPlayer,
+                          () => {}
                         );
                         player.pause();
                         setSelect(
@@ -130,12 +131,14 @@ ResponseProps) => {
                       className="text-white h-3 w-3 lg:h-6 lg:w-6 "
                       onClick={() => {
                         setPlay(true);
+                        player.pause();
                         Speak(
                           previousAnswers[index].answer,
                           setPlay,
                           (play = true),
                           player,
-                          setPlayer
+                          setPlayer,
+                          () => {}
                         );
                         setSelect(
                           previousQuestions.indexOf(previousQuestions[index])

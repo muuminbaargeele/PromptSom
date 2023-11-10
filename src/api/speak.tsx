@@ -5,7 +5,8 @@ export async function Speak(
   setPlay: (arg0: boolean) => void,
   play: boolean,
   player: any,
-  setPlayer: (player: any) => void
+  setPlayer: (player: any) => void,
+  setIsLoading: (arg0: boolean) => void
 ) {
   var synthesizer: any;
 
@@ -24,6 +25,7 @@ export async function Speak(
     player.onAudioStart = function () {
       window.console.log("playback started");
       setPlay(true);
+      setIsLoading(false);
     };
 
     player.onAudioEnd = function () {
