@@ -41,7 +41,6 @@ ResponseProps) => {
       // Scroll to the bottom of the section with smooth behavior
       //hadi la scroll-gareykarin
       if (sectionRef.current && !scrollable) {
-        // console.log("Lama Scroll-gareykaro");
         sectionRef.current.scrollTop = sectionRef.current.scrollHeight;
         sectionRef.current.scrollIntoView({ behavior: "smooth" });
       }
@@ -51,7 +50,6 @@ ResponseProps) => {
     if (!scrollable) {
       sectionRef.current?.addEventListener("drag", handleScroll);
       function handleScroll() {
-        // console.log("Waala Scroll-gareykara");
         setScrollable(true);
       }
     }
@@ -106,48 +104,50 @@ ResponseProps) => {
                     }
                   />
                 )}
-                <span className="self-end  cursor-pointer">
-                  {play && index == select ? (
-                    <FaPause
-                      className="text-white h-3 w-3 lg:h-6 lg:w-6 "
-                      onClick={() => {
-                        setPlay(false);
-                        Speak(
-                          previousAnswers[index].answer,
-                          setPlay,
-                          (play = false),
-                          player,
-                          setPlayer,
-                          () => {}
-                        );
-                        player.pause();
-                        setSelect(
-                          previousQuestions.indexOf(previousQuestions[index])
-                        );
-                        setScrollable(true);
-                      }}
-                    />
-                  ) : (
-                    <FaPlay
-                      className="text-white h-3 w-3 lg:h-6 lg:w-6 "
-                      onClick={() => {
-                        setPlay(true);
-                        player.pause();
-                        Speak(
-                          previousAnswers[index].answer,
-                          setPlay,
-                          (play = true),
-                          player,
-                          setPlayer,
-                          () => {}
-                        );
-                        setSelect(
-                          previousQuestions.indexOf(previousQuestions[index])
-                        );
-                      }}
-                    />
-                  )}
-                </span>
+                {isLoading ? null : (
+                  <span className="self-end  cursor-pointer">
+                    {play && index == select ? (
+                      <FaPause
+                        className="text-white h-3 w-3 lg:h-6 lg:w-6 "
+                        onClick={() => {
+                          setPlay(false);
+                          Speak(
+                            previousAnswers[index].answer,
+                            setPlay,
+                            (play = false),
+                            player,
+                            setPlayer,
+                            () => {}
+                          );
+                          player.pause();
+                          setSelect(
+                            previousQuestions.indexOf(previousQuestions[index])
+                          );
+                          setScrollable(true);
+                        }}
+                      />
+                    ) : (
+                      <FaPlay
+                        className="text-white h-3 w-3 lg:h-6 lg:w-6 "
+                        onClick={() => {
+                          setPlay(true);
+                          player.pause();
+                          Speak(
+                            previousAnswers[index].answer,
+                            setPlay,
+                            (play = true),
+                            player,
+                            setPlayer,
+                            () => {}
+                          );
+                          setSelect(
+                            previousQuestions.indexOf(previousQuestions[index])
+                          );
+                        }}
+                      />
+                    )}
+                  </span>
+                )}
               </div>
             )}
           </div>

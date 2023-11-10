@@ -72,10 +72,14 @@ const Chat = ({ postData }: ChatTypeProps) => {
 
     // get the Response
     const res: string | number | undefined = await postData(question);
+    if (res === undefined) {
+      newAnswer.answer = "Waan ka xunnahay Qadka ayaa Culus, Ku celi markale";
+      setIsLoading(false);
+    }
 
     Speak(res, setPlay, (play = true), player, setPlayer, setIsLoading);
 
-    newAnswer.answer = res;
+    if (res !== undefined) newAnswer.answer = res;
 
     setScrollable(false);
   };
