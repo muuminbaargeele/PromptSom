@@ -25,7 +25,7 @@ export async function Speak(
     player.onAudioStart = function () {
       window.console.log("playback started");
       setPlay(true);
-      
+      setIsLoading(false);
     };
 
     player.onAudioEnd = function () {
@@ -46,7 +46,6 @@ export async function Speak(
 
     synthesizer.synthesisStarted = function (e: any) {
       console.log(e);
-      setIsLoading(false);
       setPlay(true);
     };
 
