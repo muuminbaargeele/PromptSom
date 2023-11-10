@@ -77,7 +77,7 @@ ResponseProps) => {
             </span>
           </div>
 
-          <div className="flex items-start gap-3">
+          <div className={`flex items-start gap-3 ${isLoading && "pb-4"}`}>
             <span className="border border-grayColor/50 rounded-2xl p-[14px]">
               {isLoading && index == select ? (
                 <div className="flex items-center justify-center text-white  h-6 w-6 lg:h-12 lg:w-12">
